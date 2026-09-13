@@ -21,6 +21,7 @@ env:
   APP_USER: app
   APP_USER_PWD: secret
   APP_DB_NAME: newsletter
+  DATABASE_URL: "postgres://app:secret@localhost:5432/newsletter"
 
 jobs:
   test:
@@ -140,7 +141,7 @@ jobs:
           GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
       - name: Migrate database
-        run: SKIP_DOCKER=true ./scripts/init_db.sh
+        run: SKIP_DOCKER=true DB_PORT=5432 ./scripts/init_db.sh
       - name: Install cargo-llvm-cov
         uses: taiki-e/install-action@cargo-llvm-cov
       - name: Generate code coverage
