@@ -3,4 +3,33 @@ name = "zero2prod"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/main.rs"
+name = "zero2prod"
+
 [dependencies]
+actix-web = "4.15.0"
+chrono = "0.4.45"
+config = "0.15.25"
+serde = { version = "1.0.229", features = ["derive"]}
+tokio = { version = "1.53.1", features = ["macros", "rt-multi-thread"]}
+uuid = { version = "1.26.1", features=["v4"]}
+
+[dependencies.sqlx]
+version = "0.9.0"
+default-features = false
+features = [
+    "runtime-tokio",
+    "tls-rustls",
+    "macros",
+    "postgres",
+    "uuid",
+    "chrono",
+    "migrate"
+]
+
+[dev-dependencies]
+reqwest = "0.13"
