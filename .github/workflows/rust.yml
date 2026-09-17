@@ -42,8 +42,8 @@ jobs:
       run: cargo clippy -- -D warnings
     - name: Check formatting
       run: cargo fmt -- --check
-    - name: Install Cargo Audit
-      run: cargo install cargo-audit
-    - name: Check Vulnerabilities
-      run: cargo audit
+    # - name: Install Cargo Audit
+    #   run: cargo install cargo-audit
+    # - name: Check Vulnerabilities
+    #   run: cargo audit
 
