@@ -27,6 +27,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: cargo fetch
+    - name: Initiate DB
+      run: sqlx database create
+    - name: Migrate database
+      run: sqlx migrate run
     - name: Build
       run: cargo build --verbose
     - name: Run tests
